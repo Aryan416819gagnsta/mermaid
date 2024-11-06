@@ -1,0 +1,31 @@
+flowchart TD
+    Start[Start]
+    InputData[Input values for n and r]
+    CheckValues{Is n >= r?}
+    Error[Output error: "n should be greater than or equal to r"]
+    PermFunc[Define function calculatePermutation(n, r)]
+    FactFunc[Define function factorial(x)]
+    FactLoop{Is x > 1?}
+    Multiply[multiply result by x]
+    Decrement[decrement x by 1]
+    LoopEnd[End of factorial loop]
+    CalcFactorialN[Calculate factorial of n using factorial(n)]
+    CalcFactorialNR[Calculate factorial of (n - r) using factorial(n - r)]
+    CalcResult[Calculate nPr = factorial(n) / factorial(n - r)]
+    OutputResult[Output nPr]
+    End[End]
+
+    Start --> InputData
+    InputData --> CheckValues
+    CheckValues -->|No| Error
+    CheckValues -->|Yes| PermFunc
+    PermFunc --> FactFunc
+    FactFunc --> FactLoop
+    FactLoop -->|Yes| Multiply --> Decrement --> FactLoop
+    FactLoop -->|No| LoopEnd
+    PermFunc --> CalcFactorialN
+    PermFunc --> CalcFactorialNR
+    CalcFactorialN --> CalcResult
+    CalcFactorialNR --> CalcResult
+    CalcResult --> OutputResult
+    OutputResult --> End
